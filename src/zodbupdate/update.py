@@ -147,9 +147,8 @@ class Updater(object):
                 yield oid, tid, io.BytesIO(data)
                 if next is None:
                     break
-        elif (IStorageIteration.providedBy(storage) and
-              (not IStorageUndoable.providedBy(storage) or
-               not storage.supportsUndo())):
+        # Just testing something in dev.
+        elif (IStorageIteration.providedBy(storage)):
             # If we can't iterate only through the recent records,
             # iterate on all. Of course doing a pack before help :).
             for transaction_ in storage.iterator():
